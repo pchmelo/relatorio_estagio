@@ -1,0 +1,87 @@
+\documentclass[10pt]{article}
+\usepackage[portuguese]{babel} % para indice em português
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{svg}
+
+% Pasta para as vossas imagens.
+\graphicspath{ {./figures/} }
+
+
+\begin{document}
+
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1cm}
+		
+		%PREENCHER
+    {\fontsize{17}{16}\selectfont \textbf{Avaliação do Desempenho de Carregadores de Veículos Elétricos em Condições de Temperatura Controlada}}
+     
+		
+		\vspace{0.5cm}
+		Relatório Final do Projeto Integrador
+		
+		\vspace{1.5cm}
+		
+		%PREENCHER
+		\textbf{Vasco Ferreira da Rocha Melo}\\
+		
+		\vfill
+		% Incluir uma imagem. 
+		\includegraphics[width=0.4\textwidth]{UPORTO_fundotransparente}
+		
+		\vfill
+		
+	
+		
+		Licenciatura em Engenharia Informática e Computação
+		
+		\vspace{0.8cm}
+		
+		%PREENCHER
+		\textbf{Tutor na U.Porto}: Rolando Martins\\
+		\textbf{Orientador na empresa}: Pedro Pascoal \\ %Se diferente do tutor
+
+\vspace{0.4cm}
+		%PREENCHER
+		Data: 2024/2025
+		
+	\end{center}
+\end{titlepage}
+
+
+\thispagestyle{empty} 
+\clearpage
+
+\thispagestyle{empty}
+\tableofcontents
+
+ \clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%					  Adicionar aqui abaixo as vossas páginas!                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Para incluirem um ficheiro, façam o seguinte:
+% \include{pages/X-AAAA.tex}
+% Onde X é o número da vossa secção e AAAA é uma descrição do que tem lá dentro.
+\include{pages/Lista_de_abreviações_e_siglas}
+\include{pages/Glossario}
+\include{pages/1-Introdução.tex}
+\include{pages/2-Metodologia.tex}
+\include{pages/3-Desenvolvimento.tex}
+\include{pages/4-Conclusões.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%					  Adicionar aqui acima as vossas páginas!                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\bibliographystyle{plainurl}
+\bibliography{references} 
+
+ 
+\end{document}
