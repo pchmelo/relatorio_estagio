@@ -36,8 +36,7 @@ This section will identify all functional and non-functional requirements establ
 Throughout the internship, numerous technologies and architectures were considered to meet the client's requirements. As the requirements changed throughout the project, the project structure ended up being adjusted. This section will address the different architectures and technologies approached and their reasons for being selected.
 
 \subsubsection{Hardware components}
-The hardware components used were limited to the availability of resources and materials in the laboratory. For the solution implementation, a Raspberry Pi 3 and 4 DS18B20 sensors were used.
-
+The hardware components used were limited to the availability of resources and materials in the laboratory, which restricted the implementation options. For the solution implementation, a Raspberry Pi 3 and four DS18B20 sensors were used.
 For protocol validation, an EVSE charger developed by the Laboratory and a thermal chamber (incubator) IMP 400 from HERATERM (available in the Laboratory) were used.
 
 The Raspberry Pi 3 is a low-cost and highly versatile microcomputer, ideal for prototyping and automation projects. Another advantage is its ability to connect to various devices and sensors, facilitating integration in IoT projects. The Raspbian operating system was installed on the RPI, which provides a user-friendly interface and support for various libraries necessary for project development, namely a set of drivers and configurations to use the Raspberry's GPIO input. The GPIO input was essential for communication between the DS18B20 sensors and the Raspberry Pi, allowing reading and control of connected devices. Another advantage of the Raspberry is the integration of a network card in the system, which facilitated communication with other devices and data exchange between them. For all configuration and establishment of communication between devices, the book \cite{Molloy_2016} was used.
@@ -49,16 +48,15 @@ The DS18B20 sensors are used to measure temperature and are connected to the Ras
     \item Cost: The sensors are affordable and available in the market.
 \end{itemize}
 
-The EVSE charger developed by INESCTEC is an AC (alternating current) charger, single-phase (230VAC), with a nominal power of 7.4kW ~= 32A, which has various installed sensors that allow measuring current, voltage, frequency, and temperature values (temperature values refer to the circuit). By reading voltage and current, power can be calculated and power consumption (W) over time gives us consumption or charging in energy (W/h), which is essential to see the efficiency of electric car charging over time. Inside the charger there is a Raspberry Pi that manages charging control and enables EVSE communication with an INESC database for sending charging data.
+The EVSE (Electric Vehicle Supply Equipment) developed by INESC TEC is an AC (alternating current) charger, single-phase (230VAC), with a nominal power of 7.4kW ~= 32A, which has various installed sensors that allow measuring current, voltage, frequency, and temperature values (temperature values refer to the circuit). By reading voltage and current, power can be calculated and power consumption (W) over time gives us consumption or charging in energy (W/h), which is essential to see the efficiency of electric car charging over time. Inside the charger there is a Raspberry Pi that manages charging control and enables EVSE communication with an INESC TEC database for sending charging data.
 
 The IMP 400 is a thermal chamber that allows controlling the internal temperature, ensuring controlled conditions for conducting tests. It has the capacity to maintain constant internal temperature between 5°C and 70°C (which covers the temperature range experienced in Portugal). Internally it has a temperature sensor that allows knowing the chamber temperature during the test. Finally, the thermal chamber also has an RS 232 input that allows serial port communication with the Raspberry Pi. Due to a limitation of the thermal chamber itself, only query commands are available (allows, for example, obtaining the temperature of the chamber's internal sensor), but set commands (for example, changing the chamber temperature) are not available. For better understanding of the thermal chamber functionalities, its manual \cite{chamber_manual} was used and for more specific questions, the HERATERM support team.
 
-Additionally, other components such as resistors, cables, and connectors were also used to ensure communication between the devices and the Raspberry Pi.
+Additionally, other components such as resistors, cables, and connectors were also used to ensure communication between the devices and the RPI.
 
 \subsubsection{Software components}
 
-The software components used were the main targets in the study of architectures and technologies. The developed system consists of a set of modules that work together to ensure system functionality. The main software components used were: 
-\begin{itemize}
+The software components used were the main focus in the study of available architectures and technologies on the market and their advantages. The main software components selected and the primary reasons for their choice were:\begin{itemize}
     \item[.] Operating System: The operating system used on the RPI was Raspbian, which is a Linux distribution optimized for the Raspberry Pi. Raspbian provides a user-friendly interface and support for various libraries necessary for project development;
     \item[.] Programming Language: The programming language used was Python, which is widely used in automation and IoT projects due to its simplicity and versatility. Python has various libraries that facilitate communication with sensors and manipulation of obtained data;
     \item[.] Database: To store data obtained from sensors, MySQL was used, which is a widely used relational database management system. MySQL was chosen due to its robustness, scalability, and ease of use, in addition to being compatible with Python through the MySQL Connector library. Another important factor is that it is the main database system used in the laboratory, which facilitated integration with other existing systems;
@@ -93,7 +91,7 @@ Both components have a MySQL database that stores test data, allowing subsequent
 
 All subsystems are integrated with parallelism via threads, which allows different system components to function independently and simultaneously, in addition to being easy to deactivate via .env. On the MainPC, signals are also used (via pyqtSignal) for the graphical interface thread to communicate with the other MainPC threads. 
 
-Thus, the protocol scheme can be translated into the following diagram:
+Thus, the protocol scheme can be translated into the diagram in the Figure \ref{fig:diagrama_protocolo}, which shows the communication between the RPI and MainPC, as well as the different components that make up the system.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/protocol_diagram.png}
@@ -108,6 +106,8 @@ Another important point to consider is that the system is modular, which allows 
 \subsubsection{DS18B20 temperature sensors and circuit}
 
 For reading temperature data from DS18B20 sensors, a circuit was developed that allows connecting the sensors to the Raspberry Pi through the GPIO input. Since the circuit can be soldered, it allows greater robustness and reliability in sensor connections.
+
+In the Figure \ref{fig:circuit_dig}, the circuit diagram of the DS18B20 sensors connection to the Raspberry Pi is shown, which was drawn using Fritzing software. The circuit consists of a 4.7k$\Omega$ resistor connected to the data pin of the DS18B20 sensor, which is essential for correct sensor operation. The circuit also includes a connector that allows connecting the sensors to the Raspberry Pi through a busboard.
 
 \begin{figure}[H]
     \centering
@@ -129,6 +129,8 @@ For reading temperature data from DS18B20 sensors, a circuit was developed that 
     \caption{DS18B20 sensors connection circuit diagram to RPI}
     \label{fig:circuit_dig}
 \end{figure}
+
+In the Figures \ref{fig:circuit_1} and \ref{fig:circuit_2}, it is possible to see the circuit implemented in the laboratory.
 
 \begin{figure}[H]
     \centering
@@ -154,6 +156,8 @@ For its hardware and software implementation (sensor reading), the sites \cite{B
 
 The graphical interface was developed using the PyQt library and has as its main objective to help the user control the temperature test, allowing to create (establish time, test temperature and test description), start the temperature test, forcibly stop the test, and extend the test duration. The interface was developed to be easy to implement other functionalities in the future.
 
+In the Figure \ref{fig:gui_1}, the graphical interface can be seen, which consists of a main window with an upbar, body, and terminal. The upbar contains the connection button to the RPI and the Create a Test button, which allows creating a temperature test. The body contains the terminal that displays messages related to the test status and other information.
+
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.6\textwidth}
@@ -176,6 +180,8 @@ The graphical interface was developed using the PyQt library and has as its main
 \end{figure}
 
 The Connection button allows the user to establish connection with the RPI (with IP and port parameters defined in the .env file). After the connection is established, the user can create a temperature test through the Create a Test button, with the window appearing as a pop-up.
+
+The Figure \ref{fig:gui_2} shows the temperature test creation pop-up, which allows the user to define the test time, test temperature, and test description.
 
 \begin{figure}[H]
     \centering
@@ -209,6 +215,7 @@ Communication between the RPI and MainPC is done through an SSL/TLS protocol to 
 
 Although communication works peer to peer, to facilitate implementation the RPI behaves as a server (opens a port where it waits for a connection) and the MainPC as a client (connects to the RPI). After the connection is established and certificate authentication is validated, the RPI does not accept any more connections, establishing a peer-to-peer system.
 
+The sequence diagram in Figure \ref{fig:diagrama_comunicacao} illustrates the communication between the MainPC (on the right) and the RPI (on the left). It highlights the various components involved in the process, including SSL/TLS communication, as well as the MainPC and RPI threads affected by this interaction.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth, clip, trim=0 16cm 0 0]{figures/communication.pdf}
@@ -220,7 +227,10 @@ More information about the communication process between RPI and MainPC can be f
 
 \subsubsection{Database}
 
-To safeguard the integrity of temperature test data, a MySQL database was configured on the MainPC and RPI with the same schema. The schema is based on the EVSE database tables (which already existed in the laboratory) and was adapted to include the test structure. Thus, the database schema is as follows:
+To safeguard the integrity of temperature test data, a MySQL database was configured on the MainPC and RPI with the same schema. 
+The schema is based on the EVSE database tables (which already existed in the laboratory) and was adapted to include the test structure. 
+
+Figure \ref{fig:class_diagram} presents the database schema, highlighting the main tables used in the protocol. For confidentiality reasons, tables containing EVSE data are not included in this diagram.
 
 \begin{figure}[H]
     \centering
@@ -229,12 +239,12 @@ To safeguard the integrity of temperature test data, a MySQL database was config
     \label{fig:class_diagram}
 \end{figure}
 
-For confidentiality reasons, the tables corresponding to EVSE data are not shown in the diagram in Figure \ref{fig:class_diagram}.
-The databases are accessed through a Python library called MySQL Connector, which allows connection and manipulation of MySQL database data. The test table is the main table that stores temperature test data, while the $\mathit{temperature\_data}$ table is the table that stores temperature data obtained from DS18B20 sensors. The $\mathit{temperature\_stable\_sensor}$ and $\mathit{temperature\_stable\_chamber}$ tables are auxiliary tables that store the moment when the temperature read by the control sensor and thermal chamber sensor stabilized, respectively.
+
+The databases are accessed through a Python library called MySQL Connector, which allows connection and manipulation of MySQL database data. The $test$ table is the main table that stores temperature test data, while the $\mathit{temperature\_data}$ table is the table that stores temperature data obtained from DS18B20 sensors. The $\mathit{temperature\_stable\_sensor}$ and $\mathit{temperature\_stable\_chamber}$ tables are auxiliary tables that store the moment when the temperature read by the control sensor and thermal chamber sensor stabilized, respectively.
 
 \subsubsection{Data migration and scheduling}
 
-Scheduling is a task scheduling system that allows task execution at specific moments or at regular intervals.
+Scheduling is the automated planning and execution of tasks at specific times or regular intervals.
 
 Since temperature tests can last several hours, it was necessary to implement a data migration system between the three system components (RPI, MainPC, and EVSE), to allow real-time visualization of obtained data. For this, it is important to ensure synchronization between different components through communication between them. A scheduling system through threads is used to perform data migration between different system components.
 
@@ -242,18 +252,23 @@ The scheduling system on the RPI is responsible for obtaining data from the EVSE
 
 Additionally, after the RPI notifies the MainPC that the thermal chamber control sensor and control sensor have stabilized, the MainPC scheduling system is responsible for performing the migration of this data to the MainPC database on the next trigger.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.10]{figures/scheduling_1.pdf}
-    \caption{MainPC scheduling system sequence diagram}
-    \label{fig:scheduling_1}
-\end{figure}
+The Figures \ref{fig:scheduling_1} and \ref{fig:scheduling_2} show the sequence diagrams of the scheduling system on the MainPC and RPI, respectively. 
+These diagrams illustrate the interaction between the different components involved in the scheduling process, including the threads responsible for data migration and the actions performed by the MainPC and RPI during the scheduling process.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.10]{figures/scheduling_2.pdf}
-    \caption{RPI scheduling system sequence diagram}
-    \label{fig:scheduling_2}
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[scale=0.10]{figures/scheduling_1.pdf}
+        \caption{MainPC scheduling system sequence diagram}
+        \label{fig:scheduling_1}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[scale=0.10]{figures/scheduling_2.pdf}
+        \caption{RPI scheduling system sequence diagram}
+        \label{fig:scheduling_2}
+    \end{minipage}
 \end{figure}
 
 \subsubsection{Dashboard}
@@ -264,6 +279,8 @@ Grafana not only allows real-time graphical visualization of obtained data, but 
 Additionally, it is possible to insert the theoretical power value of the charger to calculate the efficiency of electric car charging over time, allowing more detailed analysis of charging performance.
 
 Another important factor is the easy switching of test visualization, allowing the user to select the test they want to visualize and analyze the obtained data. 
+
+The Figure \ref{fig:dashboard} shows the dashboard developed for visualizing temperature test data obtained in real time.
 
 \begin{figure}[H]
     \centering
@@ -291,7 +308,12 @@ Another important factor is the easy switching of test visualization, allowing t
 \subsubsection{Installation and configuration}
 One of the tasks developed during the internship was system bootstrapping, to allow its rapid installation and configuration. For RPI component installation, Ansible was used while for MainPC component installation, a dockerfile with devcontainer integration was used (more information in [DOCUMENTATION]).
 
-After initial setup and system configuration, the different hardware components must be properly connected and positioned. In the following figures, their installation can be seen (more information in [DOCUMENTATION]):
+After initial setup and system configuration, the different hardware components must be properly connected and positioned.
+
+The Figures \ref{fig:inst_inside_1}, \ref{fig:inst_inside_2}, \ref{fig:inst_inside_3}, and \ref{fig:inst_inside_4} show the installation of the EVSE inside the thermal chamber, 
+as well as the positioning of DS18B20 sensors inside the EVSE and the thermal chamber. The 
+figures also show the external rear part of the thermal chamber, where the electric vehicle 
+charging cable connector is located (more information in [DOCUMENTATION]).
 
 \begin{figure}[H]
     \centering
@@ -342,9 +364,9 @@ After initial setup and system configuration, the different hardware components 
         \textbf{Legend:}
         \begin{enumerate}
             \item Test control RPI
-            \item ... TODO
+            \item Control Pilot Simulator
             \item Entry to the interior of the thermal chamber
-            \item ... TODO
+            \item Electric vehicle charging cable connector
         \end{enumerate}
     \end{minipage}
     \caption{External rear part of the thermal chamber}
@@ -379,6 +401,6 @@ For protocol validation, several tests were carried out throughout the internshi
     \item Test with an electric vehicle: To validate the protocol under real conditions, a test was performed with different electric vehicles that require different charging powers. The results obtained not only validated the protocol, but also allowed verifying the efficiency of electric car charging over time.
 \end{itemize}
 
-The results obtained from tests performed under real conditions revealed that the EVSE charger at high temperatures (above 60°C) can maintain charging efficiency above 95\% (which is considered acceptable for electric vehicle charging).
+The results obtained from tests performed under real conditions revealed that the EVSE charger at high temperatures (above 60 degrees Celsius inside the thermal chamber) can maintain charging efficiency above 95\% (which is considered acceptable for electric vehicle charging).
 
 (TODO add more information about the tests performed and results obtained)

@@ -1,13 +1,15 @@
 \documentclass[10pt]{article}
-\usepackage[portuguese]{babel} % para indice em português
+\usepackage[english]{babel}
 \usepackage{url}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{hyperref}
 \usepackage{svg}
+\usepackage{indentfirst}
 
 % Pasta para as vossas imagens.
 \graphicspath{ {./figures/} }
+
 
 
 \begin{document}
@@ -17,7 +19,7 @@
 		\vspace*{1cm}
 		
 		%PREENCHER
-    {\fontsize{17}{16}\selectfont \textbf{Performance Evaluation of Electric Vehicle Chargers under Controlled Temperature Conditions}}
+    {\fontsize{17}{30}\selectfont \textbf{Performance Evaluation of Electric Vehicle Chargers under Controlled Temperature Conditions}}
      
 		
 		\vspace{0.5cm}
@@ -36,7 +38,7 @@
 		
 	
 		
-		Bachelor’s Degree in Informatics and Computing Engineering		
+		U.Porto - L.EIC - Capstone Project
 		\vspace{0.8cm}
 		
 		%PREENCHER
@@ -67,6 +69,7 @@
 % Para incluirem um ficheiro, façam o seguinte:
 % \include{pages/X-AAAA.tex}
 % Onde X é o número da vossa secção e AAAA é uma descrição do que tem lá dentro.
+\renewcommand{\figurename}{Figure}
 \include{pages/1-Introdução.tex}
 \include{pages/2-Metodologia.tex}
 \include{pages/3-Desenvolvimento.tex}
