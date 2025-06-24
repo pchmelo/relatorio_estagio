@@ -212,6 +212,12 @@ OUTPUT pages\2-Metodologia.aux
 INPUT .\pages\2-Metodologia.tex
 INPUT .\pages\2-Metodologia.tex
 INPUT pages\2-Metodologia.tex
+INPUT .\figures\ganttchart.pdf
+INPUT .\figures\ganttchart.pdf
+INPUT .\figures\ganttchart.pdf
+INPUT .\figures\ganttchart.pdf
+INPUT .\figures\ganttchart.pdf
+INPUT .\figures\ganttchart.pdf
 INPUT .\pages\3-Desenvolvimento.tex
 OUTPUT pages\3-Desenvolvimento.aux
 INPUT .\pages\3-Desenvolvimento.tex
