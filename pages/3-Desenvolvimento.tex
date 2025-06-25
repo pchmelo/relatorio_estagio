@@ -403,4 +403,6 @@ For protocol validation, several tests were carried out throughout the internshi
 
 The results obtained from tests performed under real conditions revealed that the EVSE charger at high temperatures (above 60 degrees Celsius inside the thermal chamber) can maintain charging efficiency above 95\% (which is considered acceptable for electric vehicle charging).
 
-(TODO add more information about the tests performed and results obtained)
+During the tests conducted at high temperatures over an extended period, it was observed that at a certain point, the EVSE stopped collecting performance data on the electric vehicle charging process. After conducting additional tests at high temperatures, it was discovered that the Raspberry Pi inside the EVSE, which is responsible for collecting charging performance data, would stop the data collection service when the CPU reached 85 degrees Celsius. This occurs due to a safety mechanism in the Raspberry Pi that shuts down non-essential services to prevent permanent damage.
+
+Furthermore, this year, the highest temperature ever recorded by the external chargers since their installation was observed, reaching 79 degrees Celsius. The discovery of this charger limitation is important for the future, as it compromises the analysis of electric vehicle charging performance, which is essential for the research conducted in the laboratory. This limitation should be considered for a future redesign of the charger and for more in-depth studies on its performance.
