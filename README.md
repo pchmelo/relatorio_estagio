@@ -1,51 +1,42 @@
-# projeto-integrador-template
+# PI Report
 
-Este é um simples template para o desenvolvimento do relatório do Projeto Integrador.
+## Grade
+**Internship Grade:** xx/20.0
 
-É um trabalho derivado do template disponibilizado
-[aqui](https://drive.google.com/file/d/14AW5-5RmkGqh-5GKhV6dv5vGCiDjC5ab/view?usp=sharing),
-de *Capstone*;
-A [licença](LICENSE), como discutida seguidamente, aplica-se apenas ao trabalho derivado
-de modernização e as ferramentas para a automação de compilação,
-visto que não foi possível encontrar a pessoa que inicialmente criou o documento original.
+## Introduction
+This report aims to present all the work carried out during the curricular 
+internship, which was conducted within the scope of the Capstone Project
+course of the Bachelor’s Degree in Informatics and Computing Engineering at 
+the Faculty of Engineering of the University of Porto (FEUP) and the Faculty of Sciences of the University of Porto (FCUP).
 
-## Getting started
-Dêem *fork* a este repositório, e seguidamente renomeiem para algo do género "projeto-integrador".
+## Context
+The curricular internship was conducted at the Smart Grids and Electric Vehicles Laboratory (SGEV) of the Power Systems Center (CPES) at the 
+Institute for Systems and Computer Engineering, Technology and Science (INESC TEC). The internship was supervised by engineer Pedro Pascoal from 
+the institution and by professor Rolando Martins from FEUP/FCUP.
 
-Seguidamente, façam *git clone* ao **vosso** repositório.
+The curricular internship was carried out in the second semester of the 2024/2025 academic year, starting on 
+February 14 and ending on June 27, totaling 20 weeks of internship.
 
-Escrevam o vosso relatório!
+INESC TEC is a non-profit Portuguese research and development institute 
+involved in European projects, specializing in areas such as robotics, 
+artificial intelligence, energy, and telecommunications.
 
-Lembrem-se que este repositório está distribuído sobre a [Licença MIT](LICENSE).
-Respeitem o *Copyright*.
+SGEV is a space dedicated to research and development of innovative technologies in the field of energy systems, with a primary focus on energy 
+efficiency, electric mobility, smart grids, and renewable energy.
+With the growing demand for electric vehicle (EV) charging solutions, the efficiency and safety of chargers are crucial aspects. INESC TEC currently develops 
+AC chargers that operate in outdoor environments under weather exposure, which can cause a significant increase in their internal temperature, 
+especially during summer. Given this scenario, it is essential to conduct tests to evaluate the impact of external temperature variations on 
+charger performance. These tests enable understanding of how temperature affects the operation and efficiency of chargers, ensuring 
+product reliability under real operating conditions.
 
-## O relatório
-Os ficheiros terão dentro deles um tutorial de como dar *scale* ao vosso relatório.
+## Objectives and expected results
+To develop and implement a temperature measurement system using DS18B20 sensors and Raspberry Pi 3, which will be used to monitor the thermal 
+performance of electric vehicle chargers under different temperature conditions, simulated in a climatic chamber.
 
-Para simplificar: O vosso texto vai ser escrito em ficheiros na pasta *pages*. Sempre que adicionam
-um novo ficheiro a esta pasta, têm de atualizar o *main.tex* para incluir essa secção.
+At the end of the internship, it is expected that the measurement protocol will be implemented and validated, enabling the collection of precise data on 
+the thermal performance of chargers, which will be presented in a dashboard.
 
-## Software necessário
-- Um sistema operativo Unix-like.
-
-- Uma distribuição de **LaTeX**.
-
-- Uma ferramenta de Makefile.
-
-- Opcionalmente [ENTR](https://github.com/eradman/entr), para correr o *compiler_daemon.sh*.
-
-## Código disponibilizado
-- O *template* dado pela FEUP, reestruturado;
-
-- Um *Makefile* para compilação manual;
-
-- Um *compiler_daemon.sh* para compilação automática aquando da modificação de um ficheiro.
-
-
-## ISSUES AND EXTRA FEATURES
-A única plataforma suportada pelo criador é Linux, mas não se sintam desencorajados:
-tentarei vos ajudar o máximo que as minhas habilidades possam. 
-
-Qualquer dúvida, criem um issue.
-
-Tirando este detalhe, por favor contribuam!
+## Stakeholder
+- Institution supervisor: Engineer Pedro Pascoal
+- FEUP/FCUP tutor: Professor Rolando Martins
+- Intern: Vasco Melo
